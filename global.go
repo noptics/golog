@@ -8,61 +8,64 @@ func Add(l Logger) {
 }
 
 func Init() error {
-	for l := range loggers {
-		err = l.Init()
+	for _, l := range loggers {
+		err := l.Init()
 		if err != nil {
 			return err
 		}
 	}
+	return nil
 }
 
 func Finish() error {
-	for l := range loggers {
-		err = l.Finish()
+	for _, l := range loggers {
+		err := l.Finish()
 		if err != nil {
 			return err
 		}
 	}
+
+	return nil
 }
 
 func Logw(level int, message string, data ...interface{}) {
-	for l := range loggers {
+	for _, l := range loggers {
 		l.Infow(message, data...)
 	}
 }
 
 func Info(data ...interface{}) {
-	for l := range loggers {
+	for _, l := range loggers {
 		l.Info(data...)
 	}
 }
 
 func Infow(message string, data ...interface{}) {
-	for l := range loggers {
+	for _, l := range loggers {
 		l.Infow(message, data...)
 	}
 }
 
 func Error(data ...interface{}) {
-	for l := range loggers {
+	for _, l := range loggers {
 		l.Info(data...)
 	}
 }
 
 func Errorw(message string, data ...interface{}) {
-	for l := range loggers {
+	for _, l := range loggers {
 		l.Infow(message, data...)
 	}
 }
 
 func Debug(data ...interface{}) {
-	for l := range loggers {
+	for _, l := range loggers {
 		l.Info(data...)
 	}
 }
 
 func Debugw(message string, data ...interface{}) {
-	for l := range loggers {
+	for _, l := range loggers {
 		l.Infow(message, data...)
 	}
 }
